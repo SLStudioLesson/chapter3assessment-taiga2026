@@ -1,7 +1,8 @@
-package main.java.com.recipeapp.datahandler;
+package com.recipeapp.datahandler;
 
 import java.util.ArrayList;
 import java.io.IOException;
+import com.recipeapp.model.Recipe;
 
 public interface DataHandler {
     public String getMode();

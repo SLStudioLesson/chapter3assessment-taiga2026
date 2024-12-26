@@ -26,10 +26,10 @@ public class App {
             } else {
                 dataHandler = new CSVDataHandler();
             }
-
             RecipeUI recipeUI = new RecipeUI(dataHandler);
             
             recipeUI.displayMenu();
+
             
 
         } catch (Exception e) {

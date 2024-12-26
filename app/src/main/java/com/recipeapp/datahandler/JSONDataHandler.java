@@ -1,9 +1,12 @@
-package main.java.com.recipeapp.datahandler;
+package com.recipeapp.datahandler;
 
 import java.util.ArrayList;
 import java.io.IOException;
+import com.recipeapp.ui.RecipeUI;
+import com.recipeapp.model.Recipe;
 
-public class JSONDataHandler implements DataHandler{
+public class JSONDataHandler implements DataHandler {
+
     @Override
     public String getMode() {
         return "JSON";
@@ -16,7 +19,7 @@ public class JSONDataHandler implements DataHandler{
 
     @Override
     public void writeData(Recipe recipe) throws IOException {
-
+        
     }
 
     @Override
