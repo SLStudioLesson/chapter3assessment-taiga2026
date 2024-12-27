@@ -53,6 +53,30 @@ public class CSVDataHandler implements DataHandler {
     }
     @Override
     public void writeData(Recipe recipe) throws IOException {
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(filePath, true));
+            String ingredientsString = "";
+            ArrayList<Ingredient> ingredients = recipe.getIngredients();
+
+            for (int i = 0; i < ingredients.size(); i++) {
+                if (i > 0) {
+                    ingredientsString += ",";
+                }
+                ingredientsString += ingredients.get(i).getName();
+            }
+
+            writer.write(recipe.getName() + "," + ingredientsString);
+            writer.newLine();
+
+        } catch (IOException e) {
+            System.out.println("Failed to add new recipe: " + e.getMessage());
+            throw e;
+        } finally {
+            if (writer != null) {
+                writer.close();
+            }
+        }
     }
 
     @Override

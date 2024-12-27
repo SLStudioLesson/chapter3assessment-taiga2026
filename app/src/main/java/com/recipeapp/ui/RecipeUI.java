@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import com.recipeapp.datahandler.DataHandler;
+import com.recipeapp.model.Ingredient;
 import com.recipeapp.model.Recipe;
 import java.util.ArrayList;
 
@@ -71,8 +72,8 @@ public class RecipeUI {
                         displayRecipes();
                         break;
                     case "2":
-                        // 新しいレシピを追加する場合（まだ未実装）
-                        System.out.println("Add New Recipe - This functionality is not yet implemented.");
+                        // 新しいレシピを追加する場合
+                        addNewRecipe();
                         break;
                     case "3":
                         // レシピ検索（未実装）
@@ -90,6 +91,40 @@ public class RecipeUI {
             } catch (IOException e) {
                 System.out.println("Error reading input from user: " + e.getMessage());
             }
+        }
+    }
+
+    private void addNewRecipe() {
+        try {
+            //レシピ名入力
+            System.out.print("Enter recipe name:");
+            String recipeName = reader.readLine();
+
+            //材料リスト
+            ArrayList<Ingredient> ingredients = new ArrayList<>();
+            System.out.println("Enter ingredients (type 'done' when finished):");
+
+            //材料入力
+            while (true) {
+                System.out.print("Ingredient:");
+                String ingredientName = reader.readLine();
+
+                if (ingredientName.equals("done")) {
+                    break;
+                }
+
+                //リストに追加
+                ingredients.add(new Ingredient(ingredientName));
+            }
+            //新しいレシピ作成
+            Recipe newRecipe = new Recipe(recipeName, ingredients);
+
+            //保存
+            dataHandler.writeData(newRecipe);
+
+            System.out.println("Recipe added successfully.");
+        } catch (IOException e) {
+            System.out.println("Failed to add new recipe:" + e.getMessage());
         }
     }
 }
